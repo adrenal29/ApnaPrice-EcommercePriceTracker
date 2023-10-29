@@ -34,10 +34,11 @@ export async function scrapeAmazonProduct(url: string) {
     // const response = await axios.request(options);
     const response={data:[{
       product_name:"test",
-      current_price:"100",
-
+      current_price:100,
+      image_url:"",
+      currency_symbol:"Rs",
     }]}
-    // const $ = cheerio.load(response.data);
+
     console.log("DaTA")
     console.log(response.data)
 
@@ -47,19 +48,19 @@ export async function scrapeAmazonProduct(url: string) {
 
     const originalPrice = response.data[0].current_price;
 
-    const outOfStock = $('#availability span').text().trim().toLowerCase() === 'currently unavailable';
+    // const outOfStock = $('#availability span').text().trim().toLowerCase() === 'currently unavailable';
 
-    const images = 
-      $('#imgBlkFront').attr('data-a-dynamic-image') || 
-      $('#landingImage').attr('data-a-dynamic-image') ||
-      '{}'
+    // const images = 
+    //   $('#imgBlkFront').attr('data-a-dynamic-image') || 
+    //   $('#landingImage').attr('data-a-dynamic-image') ||
+    //   '{}'
 
     const imageUrls =response.data[0].image_url;
 
-    const currency = response.data.currency_symbol;
-    const discountRate = $('.savingsPercentage').text().replace(/[-%]/g, "");
+    const currency = response.data[0].currency_symbol;
+    // const discountRate = $('.savingsPercentage').text().replace(/[-%]/g, "");
 
-    const description = extractDescription($)
+    // const description = extractDescription($)
 
     // Construct data object with scraped information
     const data = {
@@ -70,12 +71,12 @@ export async function scrapeAmazonProduct(url: string) {
       currentPrice: currentPrice,
       originalPrice: originalPrice,
       priceHistory: [],
-      discountRate: Number(discountRate),
+      discountRate:0,
       category: 'category',
       reviewsCount:100,
       stars: 4.5,
-      isOutOfStock: outOfStock,
-      description,
+      isOutOfStock: false,
+      description:"",
       lowestPrice: Number(currentPrice) || Number(originalPrice),
       highestPrice: Number(originalPrice) || Number(currentPrice),
       averagePrice: Number(currentPrice) || Number(originalPrice),
