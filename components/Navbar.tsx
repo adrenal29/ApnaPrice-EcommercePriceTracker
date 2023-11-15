@@ -50,9 +50,11 @@ const Navbar = () => {
           ))}
           {
             !data.data ?
+            <a href='/login'>
               <button
                 type="submit"
-                className="searchbar-btn"><a href='/api/auth/signin'>LOGIN</a></button>
+                className="searchbar-btn">LOGIN</button>
+              </a>
               : <h3>{JSON.stringify(data?.data?.user?.email)}</h3>
           }
         </div>
