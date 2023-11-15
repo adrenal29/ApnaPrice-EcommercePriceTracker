@@ -2,6 +2,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { stringify } from 'querystring'
+import { Header } from 'next/dist/lib/load-custom-routes'
 const navIcons = [
   { src: '/assets/icons/search.svg', alt: 'search' },
   { src: '/assets/icons/black-heart.svg', alt: 'heart' },
@@ -10,7 +13,7 @@ const navIcons = [
 
 const Navbar = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
+  const data = useSession();
   const openPopup = () => {
     setIsPopupOpen(true);
   };
@@ -22,7 +25,7 @@ const Navbar = () => {
     <header className="w-full">
       <nav className="nav">
         <Link href="/" className="flex items-center gap-1">
-          <Image 
+          <Image
             src="/assets/icons/logo.svg"
             width={27}
             height={27}
@@ -36,7 +39,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-5">
           {navIcons.map((icon) => (
-            <Image 
+            <Image
               key={icon.alt}
               src={icon.src}
               alt={icon.alt}
@@ -45,16 +48,16 @@ const Navbar = () => {
               className="object-contain"
             />
           ))}
-          <Image src="/assets/icons/user.svg"
-           width={28}
-           height={28}
-           className="object-contain"
-           onClick={openPopup}
-           alt="Img"
-          />
+          {
+            !data.data ?
+              <button
+                type="submit"
+                className="searchbar-btn"><a href='/api/auth/signin'>LOGIN</a></button>
+              : <h3>{JSON.stringify(data?.data?.user?.email)}</h3>
+          }
         </div>
       </nav>
-      
+
     </header>
   )
 }

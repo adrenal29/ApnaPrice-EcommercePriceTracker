@@ -31,13 +31,13 @@ export async function scrapeAmazonProduct(url: string) {
 
   try {
     // Fetch the product page
-    // const response = await axios.request(options);
-    const response={data:[{
-      product_name:"test",
-      current_price:100,
-      image_url:"",
-      currency_symbol:"Rs",
-    }]}
+     const response = await axios.request(options);
+    // const response={data:[{
+    //   product_name:"test",
+    //   current_price:100,
+    //   image_url:"",
+    //   currency_symbol:"Rs",
+    // }]}
 
     console.log("DaTA")
     console.log(response.data)
@@ -65,7 +65,7 @@ export async function scrapeAmazonProduct(url: string) {
     // Construct data object with scraped information
     const data = {
       url,
-      currency: currency || '$',
+      currency: currency || 'Rs',
       image: imageUrls,
       title,
       currentPrice: currentPrice,

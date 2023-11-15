@@ -7,6 +7,8 @@ import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import MakePayment from "@/components/MakePayment";
+import { useState } from "react";
 
 type Props = {
   params: { id: string }
@@ -156,7 +158,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
       </div>
 
       <div className="flex flex-col gap-16">
-        <div className="flex flex-col gap-5">
+        {/* <div className="flex flex-col gap-5">
           <h3 className="text-2xl text-secondary font-semibold">
             Product Description
           </h3>
@@ -164,7 +166,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
           <div className="flex flex-col gap-4">
             {product?.description?.split('\n')}
           </div>
-        </div>
+        </div> */}
 
         <button className="btn w-fit mx-auto flex items-center justify-center gap-3 min-w-[200px]">
           <Image 
@@ -174,9 +176,10 @@ const ProductDetails = async ({ params: { id } }: Props) => {
             height={22}
           />
 
-          <Link href="/" className="text-base text-white">
-            Buy Now
-          </Link>
+          {/* <Link href="/" className="text-base text-white">
+            Buy Now with your apnaCash and pay later */}
+            <MakePayment price={product?.currentPrice}/>
+          {/* </Link> */}
         </button>
       </div>
 
