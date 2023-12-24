@@ -14,7 +14,7 @@ export const LoginForm = () => {
   const [error, setError] = useState("");
 
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams?.get("callbackUrl") || "/";
+  const callbackUrl = searchParams?.get("callbackUrl") || "/user";
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

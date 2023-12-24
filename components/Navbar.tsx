@@ -38,7 +38,9 @@ const Navbar = () => {
         </Link>
 
         <div className="flex items-center gap-5">
+
           {navIcons.map((icon) => (
+            <Link href={`/${icon.alt}`}>
             <Image
               key={icon.alt}
               src={icon.src}
@@ -47,6 +49,7 @@ const Navbar = () => {
               height={28}
               className="object-contain"
             />
+            </Link>
           ))}
           {
             !data.data ?

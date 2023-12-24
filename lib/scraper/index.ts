@@ -30,13 +30,23 @@ export async function scrapeAmazonProduct(url: string) {
 
   try {
     // Fetch the product page
-     const response = await axios.request(options);
-    // const response={data:[{
-    //   product_name:"test",
+    const response = await axios.request(options);
+    // const response={
+    //   data:{
+    //   result:[{
+    //   title:"test",
+    //   main_image:"None",
+    //   item_available:true,
+    //   price:{
     //   current_price:100,
+    //   before_price:100,
+    //   saving_percent:10,
+    //   symbol:"Rs"
+    //   },
+    //   categories:[{category:"General"}],
     //   image_url:"",
     //   currency_symbol:"Rs",
-    // }]}
+    // }]}}
 
     console.log("DaTA")
     console.log(response.data)

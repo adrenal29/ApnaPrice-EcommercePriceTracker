@@ -24,7 +24,8 @@
     "react-dom": "latest",
     "react-responsive-carousel": "^3.2.23",
     "shortid": "^2.2.16",
-    "supports-color": "^8.1.1"
+    "supports-color": "^8.1.1",
+    "use-debounce": "^10.0.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

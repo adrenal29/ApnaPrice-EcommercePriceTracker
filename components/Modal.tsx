@@ -3,7 +3,7 @@
 import { FormEvent, Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
-import { addUserEmailToProduct } from '@/lib/actions'
+import { addUserWhatsappToProduct } from '@/lib/actions'
 
 interface Props {
   productId: string
@@ -18,7 +18,7 @@ const Modal = ({ productId }: Props) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await addUserEmailToProduct(productId, email);
+    await addUserWhatsappToProduct(productId, email);
 
     setIsSubmitting(false)
     setEmail('')
@@ -88,7 +88,7 @@ const Modal = ({ productId }: Props) => {
                   </div>
 
                   <h4 className="dialog-head_text">
-                    Stay updated with product pricing alerts right in your inbox!
+                    Stay updated with product pricing alerts right in your smartphone
                   </h4>
 
                   <p className="text-sm text-gray-600 mt-2">
@@ -98,7 +98,7 @@ const Modal = ({ productId }: Props) => {
 
                 <form className="flex flex-col mt-5" onSubmit={handleSubmit}>
                   <label htmlFor="email" className="text-sm font-medium text-gray-700">
-                    Email address
+                   Whatsapp
                   </label>
                   <div className="dialog-input_container">
                     <Image 
@@ -110,11 +110,11 @@ const Modal = ({ productId }: Props) => {
 
                     <input 
                       required
-                      type="email"
+                      type="tel"
                       id="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your email address"
+                      placeholder="Enter your whatsapp to get update for the add item"
                       className='dialog-input'
                     />
                   </div>

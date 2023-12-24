@@ -41,8 +41,8 @@ const MakePaymentComponent = (props) => {
             //alert(response.razorpay_signature);
           },
           prefill: {
-            name:"pradeep das",
-            email:"admin@indradhanu.online",
+            name:"Apna Price",
+            email:"mohit@apnaPrice.ac.in",
             contact:'9853785519'
 
           },

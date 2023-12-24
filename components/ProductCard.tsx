@@ -1,14 +1,18 @@
+
 import { Product } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
-
+import { addItem } from '@/lib/actions';
 interface Props {
   product: Product;
 }
  
 const ProductCard = ({ product }: Props) => {
   return (
+
+    <>
+       
     <Link href={`/products/${product._id}`} className="product-card">
       <div className="product-card_img-container">
         <Image 
@@ -33,8 +37,16 @@ const ProductCard = ({ product }: Props) => {
             <span>{product?.currentPrice}</span>
           </p>
         </div>
+        <button
+                onClick={addItem}
+                type="submit"
+                className="searchbar-btn" style={{width:"40%",marginLeft:"30%"}}>
+                  ADD +
+        </button>
       </div>
-    </Link>
+      </Link>
+      
+      </>
   )
 }
 
