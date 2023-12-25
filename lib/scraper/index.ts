@@ -19,7 +19,7 @@ export async function scrapeAmazonProduct(url: string) {
     method: 'GET',
     url: 'https://amazon23.p.rapidapi.com/product-details',
     params: {
-      asin: 'B01M72LILF',
+      asin: productId,
       country: 'IN'
     },
     headers: {
