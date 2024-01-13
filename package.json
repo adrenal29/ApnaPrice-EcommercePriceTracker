@@ -11,10 +11,13 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^1.0.6",
     "@prisma/client": "^5.5.2",
     "axios": "^1.5.1",
     "bcrypt": "^5.1.1",
     "cheerio": "^1.0.0-rc.12",
+    "cloudinary": "^1.41.2",
+    "cloudinary-react": "^1.8.1",
     "mongoose": "^7.5.3",
     "next": "latest",
     "next-auth": "^4.24.4",

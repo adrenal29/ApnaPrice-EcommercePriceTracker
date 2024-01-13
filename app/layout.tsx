@@ -17,15 +17,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  hideNavbar
 }: {
   children: React.ReactNode
+  hideNavbar:Boolean
 }) {
   return (
     <html lang="en">
       <body className={inter.className}>
         <main className="max-w-10xl mx-auto">
         <AuthProvider>
-          <Navbar />
+        {!hideNavbar && ( <Navbar />)}
           {children}
           </AuthProvider>
         </main>

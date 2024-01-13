@@ -2,6 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import Product from "../models/product.model";
+
+import store from "../models/store.model";
 import user from "../models/user.model";
 import prisma from "@/prisma";
 import { connectToDB } from "../mongoose";
@@ -59,7 +61,7 @@ export async function getProductById(productId: string) {
     const product = await Product.findOne({ _id: productId });
 
     if (!product) return null;
-
+    console.log(product)
     return product;
   } catch (error) {
     console.log(error);
@@ -154,9 +156,40 @@ export async function addUserWhatsappToProduct(productId: string, userEmail: str
   }
 }
 
-export async function getUserProducts(userEmail: string) {
+export async function getUserProducts(userEmail: any) {
   try{
     await  connectToDB();
+    const emailTrim=userEmail.replace(/^"(.*)"$/, '$1');
+    const user = await prisma.user.findUnique({
+    where: {
+      email: emailTrim,
+    },
+  });
+  console.log(user)
+  if (!user) {
+    console.log('User not found');
+    return null;
+  }
+  // const products:any=[];
+  // const l=user?.wishlist
+  // for(let el of l){
+  //   console.log(el)
+  //   const data=await Product.findById(el);
+  //   products.push(data);
+  // }
+  
+  // console.log(products)
+  return user?.wishlist;
+} catch (error) {
+  console.error('Error fetching user:', error);
+  throw error;
+} 
+}
+
+export async function getUser(userEmail:any){
+  try{
+    await  connectToDB();
+    console.log(userEmail)
     const user = await prisma.user.findUnique({
     where: {
       email: userEmail,
@@ -167,19 +200,66 @@ export async function getUserProducts(userEmail: string) {
     console.log('User not found');
     return null;
   }
-  const products:any=[];
-  const l=user?.wishlist
-  for(let el of l){
-    console.log(el)
-    const data=await Product.findById(el);
-    products.push(data);
+  return user?.isVendor;
   }
-  
-  console.log(products)
-  return products;
-} catch (error) {
-  console.error('Error fetching user:', error);
-  throw error;
-} 
+  catch(err){
+    console.log(err)
+    throw err;
+  }
+}
+export async function createStore(storeData:any){
+  try{
+    await connectToDB();
+    const newStore=await store.create({
+              storeOwner: storeData.storeOwner,
+              storeName: storeData?.storeName,
+              storeAddress: storeData?.storeAddress,
+              storeCategory: storeData?.storeCategory,
+              storeBanner: storeData?.storeBanner,
+              storeLayout: storeData?.storeLayout
+    })
+  }catch(err){
+    console.log(err)
+  }
 }
 
+export async function getProductsById(productId:any) {
+
+  try {
+    await connectToDB();
+    const p=await prisma.products.findUnique({
+      where:{
+        id:productId,
+      },
+    })
+    return p;
+  } catch (error) {
+    console.error('Error fetching products by IDs:', error);
+    throw error;
+  }
+}
+
+export async function getStore(storeId:any){
+    try{
+      await connectToDB();
+      console.log(storeId)
+      const s= await store.findOne({ _id: storeId });
+      return s;
+    }catch{
+
+    }
+}
+
+export async function getStoresByOwner(ownerName:string) {
+  try {
+    await connectToDB();
+    console.log(ownerName)
+    const stores = await store.find({ storeOwner: ownerName });
+    const s=JSON.parse(JSON.stringify(stores))
+    console.log(s)
+    return s;
+  } catch (error) {
+    console.error('Error retrieving stores:', error);
+    throw error;
+  }
+}

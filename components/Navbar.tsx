@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession,signOut } from 'next-auth/react'
 import { stringify } from 'querystring'
 import { Header } from 'next/dist/lib/load-custom-routes'
 const navIcons = [
@@ -22,7 +22,7 @@ const Navbar = () => {
     setIsPopupOpen(false);
   };
   return (
-    <header className="w-full">
+    <header className="w-full ">
       <nav className="nav">
         <Link href="/" className="flex items-center gap-1">
           <Image
@@ -58,7 +58,11 @@ const Navbar = () => {
                 type="submit"
                 className="searchbar-btn">LOGIN</button>
               </a>
-              : <h3>{JSON.stringify(data?.data?.user?.email)}</h3>
+              : 
+              <button
+                onClick={()=>signOut()}
+                type="submit"
+                className="searchbar-btn">LOG OUT</button>
           }
         </div>
       </nav>
