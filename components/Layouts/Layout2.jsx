@@ -31,7 +31,7 @@ const Layout2= (props) => {
           <button className='my-2 text-xs  bg-red-500 p-1 rounded text-white'>Shop Now</button>
           <button className='text-xs ml-2 bg-violet-500 p-1 rounded text-white'>Contact Us</button>
         </div> */}
-        <img src={props.imageURL} alt="No banner added" className='h-40 w-full'></img>
+        <img src={props.imageURL} alt="No banner added" className='h-40 w-full object-cover'></img>
         
         <footer className="text-center py-4 bg-gray-200 my-2">
           <p className="text-sm">{props.data.storeAddress}</p>

@@ -2,7 +2,6 @@
 
 import { revalidatePath } from "next/cache";
 import Product from "../models/product.model";
-
 import store from "../models/store.model";
 import user from "../models/user.model";
 import prisma from "@/prisma";
@@ -12,7 +11,7 @@ import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
 import { User } from "@/types";
 import { generateEmailBody, sendEmail } from "../nodemailer";
 import { useSession } from "next-auth/react";
-
+import { ObjectId, Types } from "mongoose";
 export async function scrapeAndStoreProduct(productUrl: string) {
   if (!productUrl) return;
 
@@ -262,4 +261,23 @@ export async function getStoresByOwner(ownerName:string) {
     console.error('Error retrieving stores:', error);
     throw error;
   }
+}
+
+export async function addItemtoStore(storeName:string,item:Object){ 
+  try{
+    await connectToDB();
+    console.log(storeName,item)
+    const currentStore = await store.findOne({ storeName: storeName });
+    const data=await Product.create(item)
+    console.log(data)
+    currentStore.storeProducts.push({...item,['_id']:data._id});
+ 
+    await store.updateOne({storeName:storeName}, { $set: { storeProducts: currentStore.storeProducts } })
+    
+    console.log(`Item added to store ${storeName} successfully`,item);
+  }catch(error){
+    console.error('Error retrieving stores:', error);
+    throw error;
+  }
+
 }

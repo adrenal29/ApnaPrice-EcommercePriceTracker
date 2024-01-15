@@ -22,7 +22,7 @@ const Layout1 = (props) => {
           <button className='my-2 text-xs  bg-red-500 p-1 rounded text-white'>Shop Now</button>
           <button className='text-xs ml-2 bg-violet-500 p-1 rounded text-white'>Contact Us</button>
         </div>
-        <img src={props.imageURL} alt="No banner added" className='h-40 w-full'></img>
+        <img src={props.imageURL} alt="No banner added" className='h-40 w-full object-cover'></img>
         <h3 className='my-6 mb-1 ml-2'>Shop latest {props.data.storeCategory}</h3>
         <div className='flex flex-wrap justify-around'>
           {products.map((product, index) => (

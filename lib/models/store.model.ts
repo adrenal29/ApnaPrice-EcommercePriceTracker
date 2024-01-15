@@ -7,7 +7,7 @@ const storeSchema=new mongoose.Schema({
     storeBanner:{type:String},
     storeLayout:{type:String},
     storeCategory:{type:String},
-    
+    storeProducts:{type:Array},
 })
 
 const store=mongoose.models.store|| mongoose.model('store',storeSchema)

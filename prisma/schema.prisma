@@ -30,6 +30,7 @@ model store{
   storeAddress String
   storeCategory String
   storeBanner String
-  storeLayout String 
+  storeLayout String
+  storeProducts Json[] 
 }
 
