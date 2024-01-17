@@ -27,7 +27,7 @@ const page = async ({ params: { id } }: Props) => {
                 {
                   store?.storeProducts.map((el:any)=>(
                     <div >
-                    <ProductCard key={el._id} product={el}/>
+                    <ProductCard key={el._id} product={el} isWishList={false}/>
                     </div>
                   ))
                 }
@@ -45,7 +45,7 @@ const page = async ({ params: { id } }: Props) => {
                 {
                   store?.storeProducts.map((el:any)=>(
                     <>
-                    <ProductCard key={el._id} product={el} />
+                    <ProductCard key={el._id} product={el} isWishList={false}/>
                     </>
                     
                   ))

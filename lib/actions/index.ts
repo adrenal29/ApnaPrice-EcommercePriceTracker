@@ -115,31 +115,31 @@ export async function addItem(item: any) {
   }
 }
 
-export async function addUserWhatsappToProduct(productId: string, userEmail: string) {
+export async function addUserWhatsappToProduct(productId: string, userEmail: string,uEmail:string) {
   try {
     await connectToDB();
     const product = await Product.findById(productId);
 
     if (!product) return;
 
-    const userExists = product.users.some((user: User) => user.email === userEmail);
+    const userExists = product.users.some((user: User) => user.email === uEmail);
 
     if (!userExists) {
-      product.users.push({ email: userEmail });
+      product.users.push({ email: uEmail });
 
       await product.save();
     }
     const data = await prisma.user.findUnique({
       where: {
-        email: userEmail,
+        email: uEmail,
       },
     });
     data?.wishlist?.push(productId);
-
+    console.log(uEmail)
     // Update the user data with the modified wishlist
     const updatedUser = await prisma.user.update({
       where: {
-        email: userEmail,
+        email: uEmail,
       },
       data: {
         wishlist: data?.wishlist,

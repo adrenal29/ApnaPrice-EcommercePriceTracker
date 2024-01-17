@@ -4,21 +4,22 @@ import { FormEvent, Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
 import { addUserWhatsappToProduct } from '@/lib/actions'
-
+import { useSession } from 'next-auth/react'
 interface Props {
   productId: string
 }
 
 const Modal = ({ productId }: Props) => {
+  const data = useSession();
   let [isOpen, setIsOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [email, setEmail] = useState('');
-
+  const uEmail=data?.data?.user?.email || ' ';
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await addUserWhatsappToProduct(productId, email);
+    await addUserWhatsappToProduct(productId, email,uEmail);
 
     setIsSubmitting(false)
     setEmail('')

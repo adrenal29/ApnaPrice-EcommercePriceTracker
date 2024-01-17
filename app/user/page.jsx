@@ -89,7 +89,7 @@ const Page = () => {
                 height={16}
               />
             </p>
-            {myProducts?.length > 0 && <Catelogue allProducts={myProducts}/>}
+            {myProducts?.length > 0 && <Catelogue allProducts={myProducts} isWishList={true}/>}
           </div>
         </main>
 

@@ -10,7 +10,7 @@ const Catelogue = (props: any) => {
     <>
       <div className="flex flex-wrap gap-x-8 gap-y-16">
         {items?.map((product: any) => (
-          <ProductCard key={product._id} product={product} />
+          <ProductCard key={product._id} product={product} isWishList={props.isWishList}/>
         ))}
       </div>
 

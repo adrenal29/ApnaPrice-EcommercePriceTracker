@@ -14,6 +14,11 @@ model products{
   id String @id @default (auto()) @map("_id") @db.ObjectId
   url String
   image String
+  category String
+  currentPrice BigInt
+  isOutOfStock Boolean
+  title String
+
 }
 model user{
   id String @id @default (auto()) @map("_id") @db.ObjectId
