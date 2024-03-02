@@ -7,6 +7,6 @@ const userSchema=new mongoose.Schema({
     isVendor:{type:Boolean}
 })
 
-const user=mongoose.models.User|| mongoose.model('User',userSchema)
+const user= mongoose.model('User',userSchema)
 
 export default user

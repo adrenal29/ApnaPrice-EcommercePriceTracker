@@ -2,6 +2,8 @@ import { connectToDatabase } from "@/helpers/server-helpers";
 import prisma from "@/prisma";
 import bcrypt from 'bcrypt'
 import { NextResponse } from "next/server";
+
+
 export const POST=async (req:Request)=>{
     try{
         const {name,email,password,isVendor}=await req.json();

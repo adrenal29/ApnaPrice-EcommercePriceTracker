@@ -10,6 +10,7 @@ import { getStoresByOwner } from '@/lib/actions';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
+import ViewStore from '@/components/ViewStore'
 
 const Page = () => {
   const [userIsVendor, setUserIsVendor] = useState(false);
@@ -66,6 +67,8 @@ const Page = () => {
         return <ViewPurchases user={data?.data?.user?.email} />;
       case 'add-items':
         return <AddItems user={data?.data?.user?.email} />;
+      case 'view':
+        return <ViewStore user={data?.data?.user?.email} />
       default:
         return <h4 className="text-gray-500 text-center ">Select an option from the sidebar.</h4>;
     }

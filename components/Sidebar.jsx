@@ -18,6 +18,10 @@ const Sidebar = ({ setActiveOption }) => {
           <HomeIcon className="h-6 w-6 text-white inline mr-2" />
           Add Items to Store
         </li>
+        <li className="mb-4 cursor-pointer my-8" onClick={() => setActiveOption('view')}>
+          <HomeIcon className="h-6 w-6 text-white inline mr-2" />
+          View Stores
+        </li>
       </ul>
     </div>
   );
